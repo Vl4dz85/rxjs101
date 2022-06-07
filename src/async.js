@@ -2,20 +2,12 @@ import { add } from "./helpers";
 
 add.li("Line 3");
 
-function callback(message) {
-  add.li(message);
-}
-function greeting(message, cb) {
-  let start = Date.now();
-  for (let i = 0; i < 10000000000; i++) {
-    //do nothing
-  }
-  add.li(`Took ${Date.now() - start}ms`);
-  cb(message);
-}
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("We are complete");
+  }, 5000);
+});
 
-greeting("hello from line 18", callback);
+p.then((message) => add.li(message));
 
-add.li("Line 19");
-
-add.li("Line 21");
+add.li("Line 22");
